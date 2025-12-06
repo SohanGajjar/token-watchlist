@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Token Portfolio Dark Theme - Matching Figma */
+    --background: 0 0% 5%;
+    --background-elevated: 0 0% 8%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --card-border: 0 0% 15%;
+    
+    --primary: 75 100% 50%;
+    --primary-foreground: 0 0% 5%;
+    
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 60%;
+    
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 50%;
+    
+    --accent: 75 100% 50%;
+    --accent-foreground: 0 0% 5%;
+    
+    --success: 142 76% 46%;
+    --success-foreground: 142 76% 36%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 75 100% 50%;
+    
+    --radius: 0.5rem;
+    
+    /* Chart colors matching Figma */
+    --chart-orange: 24 95% 53%;
+    --chart-purple: 270 60% 60%;
+    --chart-teal: 174 72% 56%;
+    --chart-pink: 330 80% 60%;
+    --chart-blue: 210 80% 55%;
+    --chart-yellow: 45 93% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold px-4 py-2.5 rounded-lg
+           transition-all duration-200 hover:brightness-110 active:scale-[0.98]
+           flex items-center gap-2 text-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent text-foreground border border-card-border font-medium px-4 py-2.5 rounded-lg
+           transition-all duration-200 hover:bg-secondary active:scale-[0.98]
+           flex items-center gap-2 text-sm;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-muted-foreground font-medium px-3 py-1.5 rounded-md
+           transition-all duration-200 hover:text-foreground hover:bg-secondary text-sm;
+  }
+  
+  .card {
+    @apply bg-card border border-card-border rounded-2xl;
+  }
+  
+  .input-field {
+    @apply bg-card border border-card-border rounded-lg px-4 py-3 text-foreground w-full
+           placeholder:text-muted-foreground focus:outline-none focus:ring-1 
+           focus:ring-primary/50 transition-all duration-200 text-sm;
+  }
+  
+  .table-header {
+    @apply text-muted-foreground text-xs font-medium tracking-wider;
+  }
+  
+  .table-cell {
+    @apply py-4 px-4 text-foreground text-sm;
+  }
+  
+  .positive-change {
+    @apply text-success;
+  }
+  
+  .negative-change {
+    @apply text-destructive;
+  }
+  
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+  
+  .modal-content {
+    @apply bg-card border border-card-border rounded-xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-hidden;
+  }
+  
+  /* Animations */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out forwards;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* RainbowKit theme overrides */
+[data-rk] {
+  --rk-colors-accentColor: hsl(75, 100%, 50%) !important;
+  --rk-colors-accentColorForeground: hsl(0, 0%, 5%) !important;
+}
+
+/* Number input remove arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
